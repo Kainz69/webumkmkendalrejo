@@ -1,53 +1,62 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
-  Leaf, LogOut, Plus, Pencil, Trash2, Search,
-  Store, LayoutDashboard, AlertTriangle
-} from "lucide-react"
-import type { UMKM } from "@/lib/data/umkm"
-import { jenisUsahaOptions } from "@/lib/data/umkm"
-import UmkmFormModal from "@/components/admin/umkm-form-modal"
+  Leaf,
+  LogOut,
+  Plus,
+  Pencil,
+  Trash2,
+  Search,
+  Store,
+  LayoutDashboard,
+  AlertTriangle,
+} from "lucide-react";
+import type { UMKM } from "@/lib/data/umkm";
+import { jenisUsahaOptions } from "@/lib/data/umkm";
+import { UmkmFormModal } from "@/components/admin/umkm-form-modal";
 
 type Props = {
-  data: UMKM[]
-  setData: (data: UMKM[]) => void
-  onLogout: () => void
-}
+  data: UMKM[];
+  setData: (data: UMKM[]) => void;
+  onLogout: () => void;
+};
 
 export default function AdminDashboard({ data, setData, onLogout }: Props) {
-  const [search, setSearch] = useState("")
-  const [editingUmkm, setEditingUmkm] = useState<UMKM | null | undefined>(undefined)
+  const [search, setSearch] = useState("");
+  const [editingUmkm, setEditingUmkm] = useState<UMKM | null | undefined>(
+    undefined,
+  );
   // undefined = form closed, null = add new, UMKM = edit
-  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null)
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   const filtered = data.filter(
     (u) =>
-      u.namaUmkm.toLowerCase().includes(search.toLowerCase()) ||
-      u.jenisUsaha.toLowerCase().includes(search.toLowerCase()) ||
-      u.namaPemilik.toLowerCase().includes(search.toLowerCase())
-  )
+      (u.namaUmkm?.toLowerCase() || "").includes(search.toLowerCase()) ||
+      (u.jenisUsaha?.toLowerCase() || "").includes(search.toLowerCase()) ||
+      (u.namaPemilik?.toLowerCase() || "").includes(search.toLowerCase()),
+  );
 
   const handleSave = (saved: UMKM) => {
     if (editingUmkm === null) {
       // Add new
-      setData([...data, saved])
+      setData([...data, saved]);
     } else {
       // Edit existing
-      setData(data.map((u) => (u.id === saved.id ? saved : u)))
+      setData(data.map((u) => (u.id === saved.id ? saved : u)));
     }
-    setEditingUmkm(undefined)
-  }
+    setEditingUmkm(undefined);
+  };
 
   const handleDelete = (id: string) => {
-    setData(data.filter((u) => u.id !== id))
-    setDeleteConfirmId(null)
-  }
+    setData(data.filter((u) => u.id !== id));
+    setDeleteConfirmId(null);
+  };
 
-  const jenisCount: Record<string, number> = {}
+  const jenisCount: Record<string, number> = {};
   data.forEach((u) => {
-    jenisCount[u.jenisUsaha] = (jenisCount[u.jenisUsaha] ?? 0) + 1
-  })
+    jenisCount[u.jenisUsaha] = (jenisCount[u.jenisUsaha] ?? 0) + 1;
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -59,8 +68,12 @@ export default function AdminDashboard({ data, setData, onLogout }: Props) {
               <Leaf className="w-4 h-4 text-primary-foreground" />
             </div>
             <div>
-              <p className="text-primary-foreground font-bold text-sm leading-tight">Panel Admin</p>
-              <p className="text-primary-foreground/60 text-xs">UMKM Desa Kendalrejo</p>
+              <p className="text-primary-foreground font-bold text-sm leading-tight">
+                Panel Admin
+              </p>
+              <p className="text-primary-foreground/60 text-xs">
+                UMKM Desa Kendalrejo
+              </p>
             </div>
           </div>
           <button
@@ -82,15 +95,20 @@ export default function AdminDashboard({ data, setData, onLogout }: Props) {
             value={String(data.length)}
             color="bg-primary/10"
           />
-          {jenisUsahaOptions.filter((j) => j !== "Semua").slice(0, 3).map((jenis) => (
-            <StatCard
-              key={jenis}
-              icon={<LayoutDashboard className="w-5 h-5 text-accent-foreground" />}
-              label={jenis}
-              value={String(jenisCount[jenis] ?? 0)}
-              color="bg-accent/20"
-            />
-          ))}
+          {jenisUsahaOptions
+            .filter((j) => j !== "Semua")
+            .slice(0, 3)
+            .map((jenis) => (
+              <StatCard
+                key={jenis}
+                icon={
+                  <LayoutDashboard className="w-5 h-5 text-accent-foreground" />
+                }
+                label={jenis}
+                value={String(jenisCount[jenis] ?? 0)}
+                color="bg-accent/20"
+              />
+            ))}
         </div>
 
         {/* Table header */}
@@ -120,24 +138,49 @@ export default function AdminDashboard({ data, setData, onLogout }: Props) {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border bg-muted/40 text-left">
-                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide">UMKM</th>
-                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide">Pemilik</th>
-                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide">Jenis</th>
-                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide">HP/WA</th>
-                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide">Operasional</th>
-                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide text-right">Aksi</th>
+                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
+                    UMKM
+                  </th>
+                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
+                    Pemilik
+                  </th>
+                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
+                    Jenis
+                  </th>
+                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
+                    HP/WA
+                  </th>
+                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
+                    Operasional
+                  </th>
+                  <th className="px-4 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wide text-right">
+                    Aksi
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 {filtered.map((u) => (
-                  <tr key={u.id} className="hover:bg-muted/30 transition-colors">
-                    <td className="px-4 py-3 font-medium text-foreground">{u.namaUmkm}</td>
-                    <td className="px-4 py-3 text-muted-foreground">{u.namaPemilik}</td>
-                    <td className="px-4 py-3">
-                      <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">{u.jenisUsaha}</span>
+                  <tr
+                    key={u.id}
+                    className="hover:bg-muted/30 transition-colors"
+                  >
+                    <td className="px-4 py-3 font-medium text-foreground">
+                      {u.namaUmkm}
                     </td>
-                    <td className="px-4 py-3 text-muted-foreground font-mono text-xs">{u.nomorHpWa}</td>
-                    <td className="px-4 py-3 text-muted-foreground text-xs">{u.hariOperasional} • {u.jamOperasional}</td>
+                    <td className="px-4 py-3 text-muted-foreground">
+                      {u.namaPemilik}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">
+                        {u.jenisUsaha}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground font-mono text-xs">
+                      {u.nomorHpWa}
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground text-xs">
+                      {u.hariOperasional} • {u.jamOperasional}
+                    </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-1">
                         <button
@@ -160,7 +203,10 @@ export default function AdminDashboard({ data, setData, onLogout }: Props) {
                 ))}
                 {filtered.length === 0 && (
                   <tr>
-                    <td colSpan={6} className="text-center py-10 text-muted-foreground text-sm">
+                    <td
+                      colSpan={6}
+                      className="text-center py-10 text-muted-foreground text-sm"
+                    >
                       Tidak ada data yang ditemukan
                     </td>
                   </tr>
@@ -172,24 +218,41 @@ export default function AdminDashboard({ data, setData, onLogout }: Props) {
           {/* Mobile card list */}
           <div className="sm:hidden divide-y divide-border">
             {filtered.map((u) => (
-              <div key={u.id} className="p-4 flex items-start justify-between gap-3">
+              <div
+                key={u.id}
+                className="p-4 flex items-start justify-between gap-3"
+              >
                 <div>
-                  <p className="font-semibold text-foreground text-sm">{u.namaUmkm}</p>
-                  <p className="text-xs text-muted-foreground">{u.namaPemilik} · {u.nomorHpWa}</p>
-                  <span className="mt-1 inline-block px-2 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">{u.jenisUsaha}</span>
+                  <p className="font-semibold text-foreground text-sm">
+                    {u.namaUmkm}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {u.namaPemilik} · {u.nomorHpWa}
+                  </p>
+                  <span className="mt-1 inline-block px-2 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">
+                    {u.jenisUsaha}
+                  </span>
                 </div>
                 <div className="flex gap-1 shrink-0">
-                  <button onClick={() => setEditingUmkm(u)} className="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors">
+                  <button
+                    onClick={() => setEditingUmkm(u)}
+                    className="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                  >
                     <Pencil className="w-4 h-4" />
                   </button>
-                  <button onClick={() => setDeleteConfirmId(u.id)} className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors">
+                  <button
+                    onClick={() => setDeleteConfirmId(u.id)}
+                    className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
+                  >
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
               </div>
             ))}
             {filtered.length === 0 && (
-              <div className="text-center py-10 text-muted-foreground text-sm">Tidak ada data yang ditemukan</div>
+              <div className="text-center py-10 text-muted-foreground text-sm">
+                Tidak ada data yang ditemukan
+              </div>
             )}
           </div>
         </div>
@@ -239,10 +302,20 @@ export default function AdminDashboard({ data, setData, onLogout }: Props) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-function StatCard({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: string; color: string }) {
+function StatCard({
+  icon,
+  label,
+  value,
+  color,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  color: string;
+}) {
   return (
     <div className="bg-card border border-border rounded-2xl p-4 flex items-center gap-3">
       <div className={`p-2.5 rounded-xl ${color}`}>{icon}</div>
@@ -251,5 +324,5 @@ function StatCard({ icon, label, value, color }: { icon: React.ReactNode; label:
         <p className="text-xs text-muted-foreground">{label}</p>
       </div>
     </div>
-  )
+  );
 }

@@ -79,7 +79,7 @@ export type UMKM = {
   jenisUsaha: string;
   jamOperasional: string;
   hariOperasional: string;
-  fotoProduk: string;
+  fotoProduk: string | string[];
 
   // snake_case (Supabase Database Columns / Form Payload)
   nama_umkm?: string;
@@ -94,7 +94,7 @@ export type UMKM = {
   jenis_usaha?: string;
   jam_operasional?: string;
   hari_operasional?: string;
-  foto_produk?: string;
+  foto_produk?: string | string[];
 
   // ==========================================
   // TAB 2: RINCIAN PRODUK

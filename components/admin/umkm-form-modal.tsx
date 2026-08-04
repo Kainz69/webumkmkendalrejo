@@ -2126,7 +2126,7 @@ export function UmkmFormModal({ umkm, onSave, onClose }: Props) {
         </div>
 
         {/* 🟢 TOMBOL TAB NAVIGASI (Informasi Utama, Rincian Produk, Layanan, Legalitas) */}
-        <div className="flex border-b border-border my-4 gap-2 text-xs sm:text-sm overflow-x-auto">
+        <div className="flex shrink-0 border-b border-border my-4 gap-2 text-xs sm:text-sm overflow-x-auto">
           {[
             { id: "utama", label: "Informasi Utama" },
             { id: "rincian", label: "Rincian Produk" },

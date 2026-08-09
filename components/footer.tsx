@@ -1,7 +1,7 @@
-import { Leaf, MapPin, Phone, Mail } from "lucide-react"
+import { Leaf, MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
-  const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
   return (
     <footer className="bg-foreground text-background/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -13,22 +13,32 @@ export default function Footer() {
                 <Leaf className="w-4 h-4 text-primary-foreground" />
               </div>
               <div>
-                <p className="font-bold text-background text-sm">Desa Kendalrejo</p>
-                <p className="text-background/60 text-xs">Pusat Informasi UMKM</p>
+                <p className="font-bold text-background text-sm">
+                  Desa Kendalrejo
+                </p>
+                <p className="text-background/60 text-xs">
+                  Pusat Informasi UMKM
+                </p>
               </div>
             </div>
             <p className="text-sm leading-relaxed text-background/60">
-              Platform digital resmi untuk informasi dan promosi UMKM Desa Kendalrejo, Kecamatan Talun, Kabupaten Blitar.
+              Platform digital resmi untuk informasi dan promosi UMKM Desa
+              Kendalrejo, Kecamatan Petarukan, Kabupaten Pemalang.
             </p>
           </div>
 
           {/* Kontak Kantor Desa */}
           <div>
-            <h3 className="text-background font-semibold text-sm mb-3">Kontak Kantor Desa</h3>
+            <h3 className="text-background font-semibold text-sm mb-3">
+              Kontak Kantor Desa
+            </h3>
             <ul className="space-y-2">
               <li className="flex items-start gap-2 text-sm text-background/60">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary shrink-0" />
-                <span>Jl. Raya Kendalrejo No. 1, Desa Kendalrejo, Kec. Talun, Kab. Blitar 66175</span>
+                <span>
+                  Jl. Raya Kendalrejo No. 1, Desa Kendalrejo, Kec. Petarukan,
+                  Kab. Pemalang 52371
+                </span>
               </li>
               <li className="flex items-center gap-2 text-sm text-background/60">
                 <Phone className="w-4 h-4 text-primary shrink-0" />
@@ -36,14 +46,16 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2 text-sm text-background/60">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
-                <span>desaKendalrejo@blitarkab.go.id</span>
+                <span>desaKendalrejo@pemalangkab.go.id</span>
               </li>
             </ul>
           </div>
 
           {/* Tautan Cepat */}
           <div>
-            <h3 className="text-background font-semibold text-sm mb-3">Tautan Cepat</h3>
+            <h3 className="text-background font-semibold text-sm mb-3">
+              Tautan Cepat
+            </h3>
             <ul className="space-y-2">
               {[
                 { label: "Beranda", href: "/" },
@@ -64,9 +76,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-background/10 text-center text-xs text-background/40">
-          © {year} Pusat Informasi & Promosi Digital UMKM Desa Kendalrejo. Hak cipta dilindungi.
+          © {year} Pusat Informasi & Promosi Digital UMKM Desa Kendalrejo. Hak
+          cipta dilindungi.
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -1,17 +1,18 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, X, Leaf } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, Leaf } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Beranda", href: "/" },
   { label: "Peta", href: "/#peta" },
   { label: "Katalog", href: "/#katalog" },
-]
+];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-primary shadow-md">
@@ -19,12 +20,25 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo & Title */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="flex items-center justify-center w-10 h-10 bg-primary-foreground/10 rounded-full border-2 border-primary-foreground/30 group-hover:border-primary-foreground/60 transition-colors">
-              <Leaf className="w-5 h-5 text-primary-foreground" />
+            <div className="flex items-center justify-center w-10 h-10 bg-primary-foreground/10 rounded-full border-2 border-primary-foreground/30 group-hover:border-primary-foreground/60 transition-colors overflow-hidden">
+              <Image
+                src="/logo.png"
+                alt="Logo Desa Kendalrejo"
+                width={40}
+                height={40}
+                className="w-full h-full object-cover"
+              />
             </div>
+            {/* <div className="flex items-center justify-center w-10 h-10 bg-primary-foreground/10 rounded-full border-2 border-primary-foreground/30 group-hover:border-primary-foreground/60 transition-colors">
+              <Leaf className="w-5 h-5 text-primary-foreground" />
+            </div> */}
             <div>
-              <p className="text-primary-foreground font-bold text-sm leading-tight">Desa Kendalrejo</p>
-              <p className="text-primary-foreground/70 text-xs leading-tight hidden sm:block">Pusat Informasi UMKM</p>
+              <p className="text-primary-foreground font-bold text-sm leading-tight">
+                Desa Kendalrejo
+              </p>
+              <p className="text-primary-foreground/70 text-xs leading-tight hidden sm:block">
+                Pusat Informasi UMKM
+              </p>
             </div>
           </Link>
 
@@ -47,7 +61,11 @@ export default function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {menuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </button>
         </div>
       </div>
@@ -70,5 +88,5 @@ export default function Navbar() {
         </div>
       )}
     </header>
-  )
+  );
 }

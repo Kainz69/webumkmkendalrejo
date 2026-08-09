@@ -29,7 +29,7 @@ export default function HeroSection() {
         <div className="max-w-3xl">
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary-foreground/10 text-primary-foreground/90 text-xs font-semibold rounded-full border border-primary-foreground/20 mb-5">
             <MapPin className="w-3 h-3" />
-            Kec. Talun, Blitar, Jawa Timur
+            Kec. Petarukan, Pemalang, Jawa Tengah
           </span>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-foreground leading-tight text-balance mb-5">

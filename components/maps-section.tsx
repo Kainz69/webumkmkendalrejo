@@ -48,32 +48,36 @@
 // }
 
 import { MapPin, ExternalLink } from "lucide-react";
+import Image from "next/image";
 
 export default function MapsSection() {
   const MY_MAPS_EMBED_URL =
-    "https://www.google.com/maps/d/embed?mid=1mqS9-G64kP7YnyUWf8yfSCsmdgFoq4k&ehbc=2E312F";
+    "https://www.google.com/maps/d/u/4/embed?mid=1ye3KHb9TFCe9oeRIUfnSZyu74EG4Jd0&ehbc=2E312F";
+
   const MY_MAPS_SHARE_URL =
-    "https://www.google.com/maps/d/viewer?mid=1mqS9-G64kP7YnyUWf8yfSCsmdgFoq4k";
+    "https://www.google.com/maps/d/u/4/edit?mid=1ye3KHb9TFCe9oeRIUfnSZyu74EG4Jd0&usp=sharing";
 
   return (
     <section id="peta" className="py-16 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-3">
-            <MapPin className="w-3 h-3" />
+          <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+            <MapPin className="w-4 h-4" />
             Lokasi UMKM Desa
           </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-balance">
+
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Peta Persebaran UMKM Desa Kendalrejo
           </h2>
-          <p className="text-muted-foreground mt-2 text-sm sm:text-base">
+
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Temukan titik lokasi usaha dan potensi UMKM di seluruh wilayah Desa
-            Kendalrejo
+            Kendalrejo.
           </p>
         </div>
 
         <div className="rounded-2xl overflow-hidden shadow-lg border border-border bg-card">
-          <div className="w-full h-[480px] relative">
+          <div className="aspect-video w-full relative">
             <iframe
               title="Peta Google My Maps UMKM Desa Kendalrejo"
               src={MY_MAPS_EMBED_URL}
@@ -82,13 +86,15 @@ export default function MapsSection() {
               loading="lazy"
             />
           </div>
+
           <div className="px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-t border-border">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin className="w-4 h-4 text-primary shrink-0" />
               <span>
-                Desa Kendalrejo, Kec. Talun, Kab. Blitar, Jawa Timur 66175
+                Desa Kendalrejo, Kec. Petarukan, Kab. Pemalang, Jawa Tengah
               </span>
             </div>
+
             <a
               href={MY_MAPS_SHARE_URL}
               target="_blank"

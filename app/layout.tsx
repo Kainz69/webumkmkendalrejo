@@ -9,11 +9,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "UMKM Desa Kendalrejo – Pusat Informasi & Promosi Digital",
   description:
-    "Temukan produk dan jasa unggulan dari UMKM Desa Kendalrejo, Kecamatan Talun, Blitar. Direktori digital resmi yang menampilkan katalog, lokasi, dan informasi lengkap usaha warga desa.",
+    "Temukan produk dan jasa unggulan dari UMKM Desa Kendalrejo, Kecamatan Petarukan, Pemalang. Direktori digital resmi yang menampilkan katalog, lokasi, dan informasi lengkap usaha warga desa.",
   keywords: [
     "UMKM",
     "Desa Kendalrejo",
-    "Blitar",
+    "Pemalang",
     "kuliner",
     "kerajinan",
     "produk lokal",

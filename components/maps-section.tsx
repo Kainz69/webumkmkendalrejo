@@ -47,6 +47,70 @@
 //   )
 // }
 
+// import { MapPin, ExternalLink } from "lucide-react";
+// import Image from "next/image";
+
+// export default function MapsSection() {
+//   const MY_MAPS_EMBED_URL =
+//     "https://www.google.com/maps/d/u/4/embed?mid=1ye3KHb9TFCe9oeRIUfnSZyu74EG4Jd0&ehbc=2E312F";
+
+//   const MY_MAPS_SHARE_URL =
+//     "https://www.google.com/maps/d/u/4/edit?mid=1ye3KHb9TFCe9oeRIUfnSZyu74EG4Jd0&usp=sharing";
+
+//   return (
+//     <section id="peta" className="py-16 bg-background">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         <div className="text-center mb-10">
+//           <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+//             <MapPin className="w-4 h-4" />
+//             Lokasi UMKM Desa
+//           </span>
+
+//           <h2 className="text-3xl md:text-4xl font-bold mb-4">
+//             Peta Persebaran UMKM Desa Kendalrejo
+//           </h2>
+
+//           <p className="text-muted-foreground max-w-2xl mx-auto">
+//             Temukan titik lokasi usaha dan potensi UMKM di seluruh wilayah Desa
+//             Kendalrejo.
+//           </p>
+//         </div>
+
+//         <div className="rounded-2xl overflow-hidden shadow-lg border border-border bg-card">
+//           <div className="aspect-video w-full relative">
+//             <iframe
+//               title="Peta Google My Maps UMKM Desa Kendalrejo"
+//               src={MY_MAPS_EMBED_URL}
+//               className="w-full h-full border-0"
+//               allowFullScreen
+//               loading="lazy"
+//             />
+//           </div>
+
+//           <div className="px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-t border-border">
+//             <div className="flex items-center gap-2 text-sm text-muted-foreground">
+//               <MapPin className="w-4 h-4 text-primary shrink-0" />
+//               <span>
+//                 Desa Kendalrejo, Kec. Petarukan, Kab. Pemalang, Jawa Tengah
+//               </span>
+//             </div>
+
+//             <a
+//               href={MY_MAPS_SHARE_URL}
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors shrink-0"
+//             >
+//               Buka Peta Penuh
+//               <ExternalLink className="w-3.5 h-3.5" />
+//             </a>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
 import { MapPin, ExternalLink } from "lucide-react";
 import Image from "next/image";
 
@@ -58,26 +122,41 @@ export default function MapsSection() {
     "https://www.google.com/maps/d/u/4/edit?mid=1ye3KHb9TFCe9oeRIUfnSZyu74EG4Jd0&usp=sharing";
 
   return (
-    <section id="peta" className="py-16 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="peta" className="py-16 relative overflow-hidden">
+      {/* 🟢 1. GAMBAR BACKGROUND (Ganti src dengan path foto desamu di folder public) */}
+      <Image
+        src="/bg-map.png"
+        alt="Background Desa Kendalrejo"
+        fill
+        priority
+        className="object-cover object-center pointer-events-none"
+        quality={85}
+      />
+
+      {/* 🟢 2. OVERLAY GELAP / BLUR (Mencegah teks & peta bertabrakan dengan gambar) */}
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
+
+      {/* 🟢 3. KONTEN UTAMA (Diatur relative z-10 agar berada di atas overlay) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-10">
-          <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-            <MapPin className="w-4 h-4" />
+          <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/20 text-white rounded-full text-sm font-medium mb-4 backdrop-blur-md border border-white/10">
+            <MapPin className="w-4 h-4 text-primary-foreground" />
             Lokasi UMKM Desa
           </span>
 
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Peta Persebaran UMKM Desa Kendalrejo
           </h2>
 
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-slate-200 max-w-2xl mx-auto text-sm sm:text-base">
             Temukan titik lokasi usaha dan potensi UMKM di seluruh wilayah Desa
             Kendalrejo.
           </p>
         </div>
 
-        <div className="rounded-2xl overflow-hidden shadow-lg border border-border bg-card">
-          <div className="aspect-video w-full relative">
+        {/* Card Peta dengan Efek Backdrop Glassmorphism */}
+        <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-card/95 backdrop-blur-md">
+          <div className="w-full h-[480px] relative">
             <iframe
               title="Peta Google My Maps UMKM Desa Kendalrejo"
               src={MY_MAPS_EMBED_URL}
@@ -87,11 +166,12 @@ export default function MapsSection() {
             />
           </div>
 
-          <div className="px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-t border-border">
+          <div className="px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-t border-border bg-card">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin className="w-4 h-4 text-primary shrink-0" />
               <span>
                 Desa Kendalrejo, Kec. Petarukan, Kab. Pemalang, Jawa Tengah
+                52362
               </span>
             </div>
 

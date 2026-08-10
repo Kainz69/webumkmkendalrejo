@@ -123,40 +123,38 @@ export default function MapsSection() {
 
   return (
     <section id="peta" className="py-16 relative overflow-hidden">
-      {/* 🟢 1. GAMBAR BACKGROUND (Ganti src dengan path foto desamu di folder public) */}
+      {/* Gambar Background dengan Kecerahan Ditingkatkan */}
       <Image
         src="/bg-map.png"
         alt="Background Desa Kendalrejo"
         fill
         priority
-        className="object-cover object-center pointer-events-none"
+        className="object-cover object-center pointer-events-none brightness-110"
         quality={85}
       />
 
-      {/* 🟢 2. OVERLAY GELAP / BLUR (Mencegah teks & peta bertabrakan dengan gambar) */}
-      <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-black/35 backdrop-blur-[1px]" />
 
-      {/* 🟢 3. KONTEN UTAMA (Diatur relative z-10 agar berada di atas overlay) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-10">
-          <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/20 text-white rounded-full text-sm font-medium mb-4 backdrop-blur-md border border-white/10">
+          <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/30 text-white rounded-full text-sm font-medium mb-4 backdrop-blur-md border border-white/20 shadow-sm">
             <MapPin className="w-4 h-4 text-primary-foreground" />
             Lokasi UMKM Desa
           </span>
 
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-md">
             Peta Persebaran UMKM Desa Kendalrejo
           </h2>
 
-          <p className="text-slate-200 max-w-2xl mx-auto text-sm sm:text-base">
+          <p className="text-slate-100 max-w-2xl mx-auto text-sm sm:text-base drop-shadow-sm font-medium">
             Temukan titik lokasi usaha dan potensi UMKM di seluruh wilayah Desa
             Kendalrejo.
           </p>
         </div>
 
-        {/* Card Peta dengan Efek Backdrop Glassmorphism */}
+        {/* Card Peta dengan Tinggi Fixed 480px */}
         <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-card/95 backdrop-blur-md">
-          <div className="w-full h-[480px] relative">
+          <div className="w-full h-120 relative">
             <iframe
               title="Peta Google My Maps UMKM Desa Kendalrejo"
               src={MY_MAPS_EMBED_URL}

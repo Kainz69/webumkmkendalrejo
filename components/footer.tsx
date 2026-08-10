@@ -1,4 +1,5 @@
 import { Leaf, MapPin, Phone, Mail } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -9,8 +10,14 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-full">
-                <Leaf className="w-4 h-4 text-primary-foreground" />
+              <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-full overflow-hidden">
+                <Image
+                  src="/Logo.png"
+                  alt="Logo Desa Kendalrejo"
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <p className="font-bold text-background text-sm">

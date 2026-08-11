@@ -116,6 +116,7 @@
 import { useState } from "react";
 import { Leaf, Eye, EyeOff, Lock } from "lucide-react";
 import { supabase } from "@/lib/supabase"; // 👈 1. Import helper Supabase
+import Image from "next/image";
 
 type Props = {
   onLogin: () => void;
@@ -163,7 +164,13 @@ export default function AdminLogin({ onLogin }: Props) {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center w-16 h-16 bg-primary rounded-2xl mx-auto mb-4 shadow-lg">
-            <Leaf className="w-8 h-8 text-primary-foreground" />
+            <Image
+              src="/LogoDesa.png"
+              alt="Logo Desa Kendalrejo"
+              width={40}
+              height={40}
+              className="w-full h-full object-cover"
+            />
           </div>
           <h1 className="text-xl font-bold text-foreground">Panel Admin</h1>
           <p className="text-sm text-muted-foreground mt-1">

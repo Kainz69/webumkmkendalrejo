@@ -501,6 +501,438 @@
 //   );
 // }
 
+// "use client";
+
+// import { useState } from "react";
+// import Image from "next/image";
+// import type { UMKM } from "@/lib/data/umkm";
+// import {
+//   X,
+//   MapPin,
+//   Clock,
+//   Phone,
+//   Store,
+//   FileText,
+//   ShieldCheck,
+//   CreditCard,
+//   Truck,
+//   ExternalLink,
+//   Globe,
+//   Tag,
+//   Users,
+//   Calendar,
+//   Wallet,
+// } from "lucide-react";
+
+// type Props = {
+//   umkm: UMKM;
+//   onClose: () => void;
+// };
+
+// export function UmkmModal({ umkm, onClose }: Props) {
+//   const [activeTab, setActiveTab] = useState<
+//     "utama" | "rincian" | "layanan" | "legalitas"
+//   >("utama");
+
+//   const foto = Array.isArray(umkm.fotoProduk)
+//     ? umkm.fotoProduk[0]
+//     : umkm.fotoProduk || (umkm as any).foto_produk || "/placeholder.jpg";
+
+//   const namaUmkm = umkm.namaUmkm || (umkm as any).nama_umkm || "Nama UMKM";
+//   const namaPemilik = umkm.namaPemilik || (umkm as any).nama_pemilik || "-";
+//   const jenisUsaha = umkm.jenisUsaha || (umkm as any).jenis_usaha || "Kuliner";
+//   const nomorHpWa = umkm.nomorHpWa || (umkm as any).nomor_wa || "";
+//   const hariOperasional =
+//     umkm.hariOperasional || (umkm as any).hari_operasional || "";
+//   const jamOperasional =
+//     umkm.jamOperasional || (umkm as any).jam_operasional || "";
+//   const alamatLengkap =
+//     umkm.alamatLengkap || (umkm as any).alamat_lengkap || "";
+//   const profilSingkat =
+//     umkm.profilSingkat ||
+//     (umkm as any).profile_singkat ||
+//     umkm.deskripsiProduk ||
+//     "";
+//   const targetKonsumen =
+//     umkm.targetKonsumen || (umkm as any).target_konsumen || "";
+//   const linkGoogleMaps =
+//     umkm.linkGoogleMaps || (umkm as any).link_google_maps || "";
+//   const namaProduk =
+//     umkm.namaProduk || umkm.produkUtama || (umkm as any).nama_produk || "";
+//   const produkLainnya =
+//     umkm.produkLainnya || (umkm as any).produk_utama_lainnya || "";
+//   const deskripsiProduk =
+//     umkm.deskripsiProduk || (umkm as any).deskripsi_produk || "";
+//   const harga = umkm.harga || "";
+//   const beratUkuran = umkm.beratUkuran || (umkm as any).berat_ukuran || "";
+//   const varian = Array.isArray(umkm.varian) ? umkm.varian : [];
+//   const mediaPromosi = Array.isArray(umkm.mediaPromosi)
+//     ? umkm.mediaPromosi
+//     : [];
+//   const metodePembayaran = Array.isArray(umkm.metodePembayaran)
+//     ? umkm.metodePembayaran
+//     : [];
+//   const layananPengiriman = Array.isArray(umkm.layananPengiriman)
+//     ? umkm.layananPengiriman
+//     : [];
+//   const legalitasUsaha = Array.isArray(umkm.legalitasUsaha)
+//     ? umkm.legalitasUsaha
+//     : [];
+//   const usernameSosmed =
+//     umkm.usernameSosmed || (umkm as any).username_link || "";
+//   const rekeningUsaha =
+//     umkm.rekeningUsaha || (umkm as any).rekening_usaha || "";
+//   const pencatatanKeuangan =
+//     umkm.pencatatanKeuangan || (umkm as any).pencatatan_keuangan || "";
+//   const metodePencatatan =
+//     umkm.metodePencatatan || (umkm as any).metode_pencatatan || "";
+//   const informasiHigieneSanitasi =
+//     umkm.informasiHigieneSanitasi ||
+//     (umkm as any).informasi_higiene_sanitasi ||
+//     "";
+
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
+//       <div className="bg-card rounded-2xl max-w-2xl w-full border border-border shadow-2xl overflow-hidden flex flex-col my-auto max-h-[90vh]">
+//         {/* Header Gambar Banner */}
+//         <div className="relative h-48 sm:h-56 w-full bg-muted shrink-0">
+//           <Image
+//             src={foto}
+//             alt={namaUmkm}
+//             fill
+//             className="object-cover"
+//             sizes="(max-width: 768px) 100vw, 672px"
+//           />
+//           <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+
+//           {/* Tombol Close */}
+//           <button
+//             onClick={onClose}
+//             className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition"
+//           >
+//             <X className="w-4 h-4" />
+//           </button>
+
+//           {/* Judul & Badge */}
+//           <div className="absolute bottom-4 left-4 right-4 text-white">
+//             <span className="inline-block px-2.5 py-0.5 bg-primary/90 text-primary-foreground text-[10px] sm:text-xs font-semibold rounded-full mb-1">
+//               {jenisUsaha}
+//             </span>
+//             <h2 className="text-xl sm:text-2xl font-bold line-clamp-1">
+//               {namaUmkm}
+//             </h2>
+//             <p className="text-xs text-slate-200">Pemilik: {namaPemilik}</p>
+//           </div>
+//         </div>
+
+//         {/* Tab Navigasi */}
+//         <div className="flex border-b border-border bg-card px-4 gap-2 text-xs sm:text-sm overflow-x-auto shrink-0 pt-2">
+//           {[
+//             { id: "utama", label: "Informasi Utama" },
+//             { id: "rincian", label: "Rincian Produk" },
+//             { id: "layanan", label: "Layanan" },
+//             { id: "legalitas", label: "Legalitas & Higiene" },
+//           ].map((tab) => (
+//             <button
+//               key={tab.id}
+//               onClick={() => setActiveTab(tab.id as any)}
+//               className={`pb-2.5 px-3 font-semibold border-b-2 transition-colors whitespace-nowrap ${
+//                 activeTab === tab.id
+//                   ? "border-primary text-primary"
+//                   : "border-transparent text-muted-foreground hover:text-foreground"
+//               }`}
+//             >
+//               {tab.label}
+//             </button>
+//           ))}
+//         </div>
+
+//         {/* Isi Konten Tab */}
+//         <div className="p-5 overflow-y-auto space-y-4 text-xs sm:text-sm">
+//           {/* TAB 1: UTAMA */}
+//           {activeTab === "utama" && (
+//             <div className="space-y-3">
+//               {profilSingkat && (
+//                 <div className="bg-muted/40 p-3 rounded-xl">
+//                   <p className="text-muted-foreground leading-relaxed">
+//                     {profilSingkat}
+//                   </p>
+//                 </div>
+//               )}
+
+//               <div className="space-y-2 pt-1">
+//                 {alamatLengkap && (
+//                   <div className="flex items-start gap-2 text-muted-foreground">
+//                     <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+//                     <span>{alamatLengkap}</span>
+//                   </div>
+//                 )}
+
+//                 {(hariOperasional || jamOperasional) && (
+//                   <div className="flex items-center gap-2 text-muted-foreground">
+//                     <Clock className="w-4 h-4 text-primary shrink-0" />
+//                     <span>
+//                       {hariOperasional} ({jamOperasional})
+//                     </span>
+//                   </div>
+//                 )}
+
+//                 {targetKonsumen && (
+//                   <div className="flex items-center gap-2 text-muted-foreground">
+//                     <Users className="w-4 h-4 text-primary shrink-0" />
+//                     <span>Target Konsumen: {targetKonsumen}</span>
+//                   </div>
+//                 )}
+
+//                 {umkm.tahunBerdiri ? (
+//                   <div className="flex items-center gap-2 text-muted-foreground">
+//                     <Calendar className="w-4 h-4 text-primary shrink-0" />
+//                     <span>Berdiri Sejak Tahun {umkm.tahunBerdiri}</span>
+//                   </div>
+//                 ) : null}
+//               </div>
+
+//               {linkGoogleMaps && (
+//                 <div className="pt-2">
+//                   <a
+//                     href={linkGoogleMaps}
+//                     target="_blank"
+//                     rel="noopener noreferrer"
+//                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-muted hover:bg-muted/80 text-foreground rounded-xl text-xs font-medium transition"
+//                   >
+//                     <MapPin className="w-3.5 h-3.5 text-primary" />
+//                     <span>Petunjuk Lokasi Google Maps</span>
+//                     <ExternalLink className="w-3 h-3 text-muted-foreground" />
+//                   </a>
+//                 </div>
+//               )}
+//             </div>
+//           )}
+
+//           {/* TAB 2: RINCIAN PRODUK */}
+//           {activeTab === "rincian" && (
+//             <div className="space-y-3">
+//               {namaProduk && (
+//                 <div>
+//                   <span className="text-muted-foreground block text-xs mb-0.5">
+//                     Produk Utama
+//                   </span>
+//                   <p className="font-semibold text-foreground">{namaProduk}</p>
+//                 </div>
+//               )}
+
+//               {produkLainnya && (
+//                 <div>
+//                   <span className="text-muted-foreground block text-xs mb-0.5">
+//                     Produk Lainnya / Variasi
+//                   </span>
+//                   <p className="font-medium text-foreground">{produkLainnya}</p>
+//                 </div>
+//               )}
+
+//               {harga && (
+//                 <div className="inline-block bg-primary/10 px-3 py-1.5 rounded-xl border border-primary/20">
+//                   <span className="text-xs text-muted-foreground block">
+//                     Kisaran Harga
+//                   </span>
+//                   <p className="font-bold text-primary">{harga}</p>
+//                 </div>
+//               )}
+
+//               {beratUkuran && (
+//                 <div>
+//                   <span className="text-muted-foreground block text-xs mb-0.5">
+//                     Berat / Ukuran
+//                   </span>
+//                   <p className="font-medium text-foreground">{beratUkuran}</p>
+//                 </div>
+//               )}
+
+//               {varian.length > 0 && (
+//                 <div>
+//                   <span className="text-muted-foreground block text-xs mb-1">
+//                     Varian Rasa / Pilihan
+//                   </span>
+//                   <div className="flex flex-wrap gap-1.5">
+//                     {varian.map((v, i) => (
+//                       <span
+//                         key={i}
+//                         className="px-2.5 py-1 bg-muted rounded-lg text-xs font-medium text-foreground"
+//                       >
+//                         {v}
+//                       </span>
+//                     ))}
+//                   </div>
+//                 </div>
+//               )}
+
+//               {deskripsiProduk && (
+//                 <div className="pt-2 border-t border-border">
+//                   <span className="text-muted-foreground block text-xs mb-1">
+//                     Deskripsi Produk
+//                   </span>
+//                   <p className="text-muted-foreground leading-relaxed">
+//                     {deskripsiProduk}
+//                   </p>
+//                 </div>
+//               )}
+//             </div>
+//           )}
+
+//           {/* TAB 3: LAYANAN */}
+//           {activeTab === "layanan" && (
+//             <div className="space-y-4">
+//               {metodePembayaran.length > 0 && (
+//                 <div className="flex items-start gap-2.5">
+//                   <CreditCard className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+//                   <div>
+//                     <span className="font-semibold text-foreground block mb-1">
+//                       Metode Pembayaran
+//                     </span>
+//                     <div className="flex flex-wrap gap-1.5">
+//                       {metodePembayaran.map((m, i) => (
+//                         <span
+//                           key={i}
+//                           className="px-2 py-0.5 bg-muted rounded-md text-xs"
+//                         >
+//                           {m}
+//                         </span>
+//                       ))}
+//                     </div>
+//                   </div>
+//                 </div>
+//               )}
+
+//               {layananPengiriman.length > 0 && (
+//                 <div className="flex items-start gap-2.5">
+//                   <Truck className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+//                   <div>
+//                     <span className="font-semibold text-foreground block mb-1">
+//                       Layanan Pengiriman
+//                     </span>
+//                     <div className="flex flex-wrap gap-1.5">
+//                       {layananPengiriman.map((l, i) => (
+//                         <span
+//                           key={i}
+//                           className="px-2 py-0.5 bg-muted rounded-md text-xs"
+//                         >
+//                           {l}
+//                         </span>
+//                       ))}
+//                     </div>
+//                   </div>
+//                 </div>
+//               )}
+
+//               {rekeningUsaha && (
+//                 <div className="flex items-start gap-2.5">
+//                   <Wallet className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+//                   <div>
+//                     <span className="font-semibold text-foreground block">
+//                       Rekening Usaha
+//                     </span>
+//                     <p className="text-muted-foreground">{rekeningUsaha}</p>
+//                   </div>
+//                 </div>
+//               )}
+
+//               {usernameSosmed && (
+//                 <div className="flex items-start gap-2.5">
+//                   <Globe className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+//                   <div>
+//                     <span className="font-semibold text-foreground block">
+//                       Media Sosial
+//                     </span>
+//                     <p className="text-muted-foreground">{usernameSosmed}</p>
+//                   </div>
+//                 </div>
+//               )}
+//             </div>
+//           )}
+
+//           {/* TAB 4: LEGALITAS & HIGIENE */}
+//           {activeTab === "legalitas" && (
+//             <div className="space-y-4">
+//               {legalitasUsaha.length > 0 && (
+//                 <div className="flex items-start gap-2.5">
+//                   <ShieldCheck className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+//                   <div>
+//                     <span className="font-semibold text-foreground block mb-1">
+//                       Legalitas Usaha
+//                     </span>
+//                     <div className="flex flex-wrap gap-1.5">
+//                       {legalitasUsaha.map((leg, i) => (
+//                         <span
+//                           key={i}
+//                           className="px-2.5 py-1 bg-emerald-500/10 text-emerald-600 rounded-lg font-medium text-xs border border-emerald-500/20"
+//                         >
+//                           {leg}
+//                         </span>
+//                       ))}
+//                     </div>
+//                   </div>
+//                 </div>
+//               )}
+
+//               {(pencatatanKeuangan || metodePencatatan) && (
+//                 <div className="flex items-start gap-2.5">
+//                   <FileText className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+//                   <div>
+//                     <span className="font-semibold text-foreground block">
+//                       Pencatatan Keuangan
+//                     </span>
+//                     <p className="text-muted-foreground">
+//                       {pencatatanKeuangan}
+//                       {metodePencatatan ? ` (${metodePencatatan})` : ""}
+//                     </p>
+//                   </div>
+//                 </div>
+//               )}
+
+//               {informasiHigieneSanitasi && (
+//                 <div className="flex items-start gap-2.5">
+//                   <ShieldCheck className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+//                   <div>
+//                     <span className="font-semibold text-foreground block mb-0.5">
+//                       Informasi Higiene & Sanitasi
+//                     </span>
+//                     <p className="text-muted-foreground leading-relaxed">
+//                       {informasiHigieneSanitasi}
+//                     </p>
+//                   </div>
+//                 </div>
+//               )}
+//             </div>
+//           )}
+//         </div>
+
+//         {/* Footer Kontak WA */}
+//         <div className="p-4 border-t border-border bg-card shrink-0 flex items-center justify-between gap-3">
+//           <div className="text-xs text-muted-foreground hidden sm:block">
+//             Tertarik dengan produk ini? Hubungi langsung pemilik usaha.
+//           </div>
+
+//           {nomorHpWa ? (
+//             <a
+//               href={`https://wa.me/${nomorHpWa.replace(/^0/, "62").replace(/\D/g, "")}`}
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               className="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center justify-center gap-2 shadow-sm"
+//             >
+//               <Phone className="w-4 h-4" />
+//               <span>Hubungi via WhatsApp</span>
+//             </a>
+//           ) : (
+//             <span className="text-xs text-muted-foreground italic">
+//               Nomor WhatsApp tidak tersedia
+//             </span>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
 "use client";
 
 import { useState } from "react";
@@ -517,11 +949,11 @@ import {
   CreditCard,
   Truck,
   ExternalLink,
-  Globe,
   Tag,
   Users,
   Calendar,
   Wallet,
+  Globe,
 } from "lucide-react";
 
 type Props = {
@@ -534,9 +966,10 @@ export function UmkmModal({ umkm, onClose }: Props) {
     "utama" | "rincian" | "layanan" | "legalitas"
   >("utama");
 
-  const foto = Array.isArray(umkm.fotoProduk)
-    ? umkm.fotoProduk[0]
-    : umkm.fotoProduk || (umkm as any).foto_produk || "/placeholder.jpg";
+  const rawFoto = umkm.fotoProduk || (umkm as any).foto_produk;
+  const foto = Array.isArray(rawFoto)
+    ? rawFoto[0]
+    : rawFoto || "/placeholder.jpg";
 
   const namaUmkm = umkm.namaUmkm || (umkm as any).nama_umkm || "Nama UMKM";
   const namaPemilik = umkm.namaPemilik || (umkm as any).nama_pemilik || "-";
@@ -594,7 +1027,6 @@ export function UmkmModal({ umkm, onClose }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
       <div className="bg-card rounded-2xl max-w-2xl w-full border border-border shadow-2xl overflow-hidden flex flex-col my-auto max-h-[90vh]">
-        {/* Header Gambar Banner */}
         <div className="relative h-48 sm:h-56 w-full bg-muted shrink-0">
           <Image
             src={foto}
@@ -605,7 +1037,6 @@ export function UmkmModal({ umkm, onClose }: Props) {
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
 
-          {/* Tombol Close */}
           <button
             onClick={onClose}
             className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition"
@@ -613,7 +1044,6 @@ export function UmkmModal({ umkm, onClose }: Props) {
             <X className="w-4 h-4" />
           </button>
 
-          {/* Judul & Badge */}
           <div className="absolute bottom-4 left-4 right-4 text-white">
             <span className="inline-block px-2.5 py-0.5 bg-primary/90 text-primary-foreground text-[10px] sm:text-xs font-semibold rounded-full mb-1">
               {jenisUsaha}
@@ -625,7 +1055,6 @@ export function UmkmModal({ umkm, onClose }: Props) {
           </div>
         </div>
 
-        {/* Tab Navigasi */}
         <div className="flex border-b border-border bg-card px-4 gap-2 text-xs sm:text-sm overflow-x-auto shrink-0 pt-2">
           {[
             { id: "utama", label: "Informasi Utama" },
@@ -647,9 +1076,7 @@ export function UmkmModal({ umkm, onClose }: Props) {
           ))}
         </div>
 
-        {/* Isi Konten Tab */}
         <div className="p-5 overflow-y-auto space-y-4 text-xs sm:text-sm">
-          {/* TAB 1: UTAMA */}
           {activeTab === "utama" && (
             <div className="space-y-3">
               {profilSingkat && (
@@ -709,7 +1136,6 @@ export function UmkmModal({ umkm, onClose }: Props) {
             </div>
           )}
 
-          {/* TAB 2: RINCIAN PRODUK */}
           {activeTab === "rincian" && (
             <div className="space-y-3">
               {namaProduk && (
@@ -779,7 +1205,6 @@ export function UmkmModal({ umkm, onClose }: Props) {
             </div>
           )}
 
-          {/* TAB 3: LAYANAN */}
           {activeTab === "layanan" && (
             <div className="space-y-4">
               {metodePembayaran.length > 0 && (
@@ -841,7 +1266,7 @@ export function UmkmModal({ umkm, onClose }: Props) {
                   <Globe className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-foreground block">
-                      Media Sosial
+                      Media Sosial / Link
                     </span>
                     <p className="text-muted-foreground">{usernameSosmed}</p>
                   </div>
@@ -850,7 +1275,6 @@ export function UmkmModal({ umkm, onClose }: Props) {
             </div>
           )}
 
-          {/* TAB 4: LEGALITAS & HIGIENE */}
           {activeTab === "legalitas" && (
             <div className="space-y-4">
               {legalitasUsaha.length > 0 && (
@@ -906,7 +1330,6 @@ export function UmkmModal({ umkm, onClose }: Props) {
           )}
         </div>
 
-        {/* Footer Kontak WA */}
         <div className="p-4 border-t border-border bg-card shrink-0 flex items-center justify-between gap-3">
           <div className="text-xs text-muted-foreground hidden sm:block">
             Tertarik dengan produk ini? Hubungi langsung pemilik usaha.

@@ -1,23 +1,22 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { umkmData as initialData, type UMKM, jenisUsahaOptions } from "@/lib/data/umkm"
-import AdminLogin from "@/components/admin/admin-login"
-import AdminDashboard from "@/components/admin/admin-dashboard"
+import { useState } from "react";
+import {
+  umkmData as initialData,
+  type UMKM,
+  jenisUsahaOptions,
+} from "@/lib/data/umkm";
+import AdminLogin from "@/components/admin/admin-login";
+// import AdminDashboard from "@/components/admin/admin-dashboard"
+import { AdminDashboard } from "@/components/admin/admin-dashboard";
 
 export default function AdminPage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [data, setData] = useState<UMKM[]>(initialData)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [data, setData] = useState<UMKM[]>(initialData);
 
   if (!isLoggedIn) {
-    return <AdminLogin onLogin={() => setIsLoggedIn(true)} />
+    return <AdminLogin onLogin={() => setIsLoggedIn(true)} />;
   }
 
-  return (
-    <AdminDashboard
-      data={data}
-      setData={setData}
-      onLogout={() => setIsLoggedIn(false)}
-    />
-  )
+  return <AdminDashboard onLogout={() => setIsLoggedIn(false)} />;
 }

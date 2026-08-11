@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-3">
               <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-full overflow-hidden">
                 <Image
-                  src="/Logo.png"
+                  src="/LogoDesa.png"
                   alt="Logo Desa Kendalrejo"
                   width={32}
                   height={32}
@@ -43,17 +43,16 @@ export default function Footer() {
               <li className="flex items-start gap-2 text-sm text-background/60">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary shrink-0" />
                 <span>
-                  Jl. Raya Kendalrejo No. 1, Desa Kendalrejo, Kec. Petarukan,
-                  Kab. Pemalang 52371
+                  Alamat: Jl. Penyu No. 1, Kendalrejo, Petarukan, Pemalang 52362
                 </span>
               </li>
               <li className="flex items-center gap-2 text-sm text-background/60">
                 <Phone className="w-4 h-4 text-primary shrink-0" />
-                <span>(0342) 123-456</span>
+                <span>087787616338</span>
               </li>
               <li className="flex items-center gap-2 text-sm text-background/60">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
-                <span>desaKendalrejo@pemalangkab.go.id</span>
+                <span>kendalrejo@desakupemalang.id</span>
               </li>
             </ul>
           </div>

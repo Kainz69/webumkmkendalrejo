@@ -22,7 +22,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group">
             <div className="flex items-center justify-center w-10 h-10 bg-primary-foreground/10 rounded-full border-2 border-primary-foreground/30 group-hover:border-primary-foreground/60 transition-colors overflow-hidden">
               <Image
-                src="/Logo.png"
+                src="/LogoDesa.png"
                 alt="Logo Desa Kendalrejo"
                 width={40}
                 height={40}

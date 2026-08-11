@@ -111,6 +111,84 @@
 //   );
 // }
 
+// import { MapPin, ExternalLink } from "lucide-react";
+// import Image from "next/image";
+
+// export default function MapsSection() {
+//   const MY_MAPS_EMBED_URL =
+//     "https://www.google.com/maps/d/u/4/embed?mid=1ye3KHb9TFCe9oeRIUfnSZyu74EG4Jd0&ehbc=2E312F";
+
+//   const MY_MAPS_SHARE_URL =
+//     "https://www.google.com/maps/d/u/4/edit?mid=1ye3KHb9TFCe9oeRIUfnSZyu74EG4Jd0&usp=sharing";
+
+//   return (
+//     <section id="peta" className="py-16 relative overflow-hidden">
+//       {/* Gambar Background dengan Kecerahan Ditingkatkan */}
+//       <Image
+//         src="/bg-map.png"
+//         alt="Background Desa Kendalrejo"
+//         fill
+//         priority
+//         className="object-cover object-center pointer-events-none brightness-110"
+//         quality={85}
+//       />
+
+//       <div className="absolute inset-0 bg-black/35 backdrop-blur-[1px]" />
+
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+//         <div className="text-center mb-10">
+//           <span className="inline-flex items-center gap-2 px-3 py-1 bg-primary/30 text-white rounded-full text-sm font-medium mb-4 backdrop-blur-md border border-white/20 shadow-sm">
+//             <MapPin className="w-4 h-4 text-primary-foreground" />
+//             Lokasi UMKM Desa
+//           </span>
+
+//           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-md">
+//             Peta Persebaran UMKM Desa Kendalrejo
+//           </h2>
+
+//           <p className="text-slate-100 max-w-2xl mx-auto text-sm sm:text-base drop-shadow-sm font-medium">
+//             Temukan titik lokasi usaha dan potensi UMKM di seluruh wilayah Desa
+//             Kendalrejo.
+//           </p>
+//         </div>
+
+//         {/* Card Peta dengan Tinggi Fixed 480px */}
+//         <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-card/95 backdrop-blur-md">
+//           <div className="w-full h-120 relative">
+//             <iframe
+//               title="Peta Google My Maps UMKM Desa Kendalrejo"
+//               src={MY_MAPS_EMBED_URL}
+//               className="w-full h-full border-0"
+//               allowFullScreen
+//               loading="lazy"
+//             />
+//           </div>
+
+//           <div className="px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-t border-border bg-card">
+//             <div className="flex items-center gap-2 text-sm text-muted-foreground">
+//               <MapPin className="w-4 h-4 text-primary shrink-0" />
+//               <span>
+//                 Desa Kendalrejo, Kec. Petarukan, Kab. Pemalang, Jawa Tengah
+//                 52362
+//               </span>
+//             </div>
+
+//             <a
+//               href={MY_MAPS_SHARE_URL}
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors shrink-0"
+//             >
+//               Buka Peta Penuh
+//               <ExternalLink className="w-3.5 h-3.5" />
+//             </a>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
 import { MapPin, ExternalLink } from "lucide-react";
 import Image from "next/image";
 
@@ -119,11 +197,11 @@ export default function MapsSection() {
     "https://www.google.com/maps/d/u/4/embed?mid=1ye3KHb9TFCe9oeRIUfnSZyu74EG4Jd0&ehbc=2E312F";
 
   const MY_MAPS_SHARE_URL =
-    "https://www.google.com/maps/d/u/4/edit?mid=1ye3KHb9TFCe9oeRIUfnSZyu74EG4Jd0&usp=sharing";
+    "https://www.google.com/maps/d/viewer?mid=1ye3KHb9TFCe9oeRIUfnSZyu74EG4Jd0";
 
   return (
     <section id="peta" className="py-16 relative overflow-hidden">
-      {/* Gambar Background dengan Kecerahan Ditingkatkan */}
+      {/* 🟢 Gambar Background Desa (Menggunakan bg-map.png yang ada di folder public/) */}
       <Image
         src="/bg-map.png"
         alt="Background Desa Kendalrejo"
@@ -133,6 +211,7 @@ export default function MapsSection() {
         quality={85}
       />
 
+      {/* 🟢 Overlay Gelap Transparan (bg-black/35) agar pemandangan terang & teks terbaca */}
       <div className="absolute inset-0 bg-black/35 backdrop-blur-[1px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

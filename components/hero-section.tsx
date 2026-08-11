@@ -73,7 +73,7 @@ export default function HeroSection() {
         {/* Stats */}
         <div className="mt-14 grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-lg">
           {[
-            { icon: Store, value: "8+", label: "UMKM Terdaftar" },
+            { icon: Store, value: "5+", label: "UMKM Terdaftar" },
             { icon: Users, value: "5", label: "Jenis Usaha" },
             { icon: MapPin, value: "1", label: "Desa Kendalrejo" },
           ].map(({ icon: Icon, value, label }) => (
